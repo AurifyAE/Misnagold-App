@@ -175,23 +175,23 @@ async function fetchData() {
         document.getElementById("lowLabelSilver").innerHTML = silverLowValue;
         document.getElementById("highLabelSilver").innerHTML = silverHighValue;
 
-        var element;
+        // var element;
 
-        // LowLabelGold
-        element = document.getElementById("lowLabelGold");
-        element.style.backgroundColor = "red";
+        // // LowLabelGold
+        // element = document.getElementById("lowLabelGold");
+        // element.style.backgroundColor = "red";
 
-        // HighLabelGold
-        element = document.getElementById("highLabelGold");
-        element.style.backgroundColor = "green";
+        // // HighLabelGold
+        // element = document.getElementById("highLabelGold");
+        // element.style.backgroundColor = "green";
 
-        // LowLabelSilver
-        element = document.getElementById("lowLabelSilver");
-        element.style.backgroundColor = "red";
+        // // LowLabelSilver
+        // element = document.getElementById("lowLabelSilver");
+        // element.style.backgroundColor = "red";
 
-        // HighLabelSilver
-        element = document.getElementById("highLabelSilver");
-        element.style.backgroundColor = "green";
+        // // HighLabelSilver
+        // element = document.getElementById("highLabelSilver");
+        // element.style.backgroundColor = "green";
     } catch (error) {
         console.error('Error fetching gold and silver values:', error);
     }
