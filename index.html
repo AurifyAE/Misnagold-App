@@ -148,8 +148,9 @@
         background-color: #d3d3d3;
         width: 100%;
         padding: 10px;
-        height: 55px;
+        height: 46px;
         padding-left: 30px;
+        border-radius: 10px;
       }
 
       .symbols .buy-label {
@@ -166,15 +167,16 @@
 
       .symbols .sell-label p,
       .symbols .buy-label p {
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 600;
         margin-right: 8px
       }
 
-      .symbols .sell-label i,
-      .symbols .buy-label i {
+      .symbols .sell-label .icon,
+      .symbols .buy-label .icon {
         font-size: 18px;
         font-weight: 600;
+        margin-bottom: 7px;
       }
 
       .buy {
@@ -200,52 +202,70 @@
         padding: 0px;
       }
 
-      .buy .icon{
+      .buy .icon {
         font-size: 1.5rem;
         margin-top: -10px;
         padding: 0;
-        color: #005043;
+        color: red;
       }
 
-      .sell .icon{
+      .sell .icon {
         font-size: 1.5rem;
         margin-top: -7px;
         padding: 0;
-        color: #005043;
+        color: green;
       }
 
 
-      .gold{
+      .gold {
         font-size: 20px;
+        border-radius: 10px;
+      }
+
+      .gold .label p{
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .silver .label p{
+        font-size: 20px;
+        font-weight: 600;
       }
 
       .gold .buy div:first-child,
-      .gold .sell div:first-child{
+      .gold .sell div:first-child {
         font-size: 18px;
       }
 
       .gold .buy div:last-child,
-      .gold .sell div:last-child{
+      .gold .sell div:last-child {
         font-size: 18px;
       }
 
-      .silver{
+      .silver {
         font-size: 20px;
+        
+        border-radius: 10px;
       }
 
       .silver .buy div:first-child,
-      .silver .sell div:first-child{
+      .silver .sell div:first-child {
         font-size: 14px;
       }
 
       .silver .buy div:last-child,
-      .silver .sell div:last-child{
+      .silver .sell div:last-child {
         font-size: 14px;
       }
 
       .gold .label,
-      .silver .label{
+      .silver .label {
         width: 80px;
+      }
+
+
+      .table-row .data{
+        border-radius: 10px;
       }
     }
 
@@ -317,13 +337,13 @@
           <div class="buy-label">
             <p>BUY</p>
             <div>
-              <i class="fa-solid fa-dollar-sign" style="color: #005043;"></i>
+              <i class="fa-solid fa-dollar-sign icon" style="color: #005043;"></i>
             </div>
           </div>
           <div class="sell-label">
             <p>SELL</p>
             <div>
-              <i class="fa-solid fa-dollar-sign" style="color: #005043;"></i>
+              <i class="fa-solid fa-dollar-sign icon" style="color: #005043;"></i>
             </div>
           </div>
         </div>
@@ -338,7 +358,7 @@
           <div class="buy">
             <div class="form-control input-box" id="goldInputLow"></div>
             <div>
-              <i class="fa-solid fa-caret-down icon" ></i>
+              <i class="fa-solid fa-caret-down icon"></i>
               <label id="lowLabelGold">0</label>
             </div>
           </div>
@@ -360,7 +380,7 @@
           <div class="buy">
             <div class="form-control input-box" id="silverInputLow"></div>
             <div>
-              <i class="fa-solid fa-caret-down icon" ></i>
+              <i class="fa-solid fa-caret-down icon"></i>
               <label id="lowLabelSilver">0</label>
             </div>
           </div>
@@ -376,7 +396,7 @@
 
 
       </div>
-      <div style="margin-top: 10px;">
+      <div style="margin-top: 10px;" class="table-row">
         <div class="data">
           <div class="row">
             <div>
