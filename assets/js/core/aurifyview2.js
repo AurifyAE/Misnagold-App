@@ -224,6 +224,20 @@ async function fetchData() {
 // }
 
 
+////////////////////////////////////////////
+///// Function to show Alert  //////////////
+
+function rateAlert() {
+    $("#slider").roundSlider({
+        radius: 120,
+        circleShape: "half-top",
+        sliderType: "min-range",
+        showTooltip: false,
+        value: 100,
+        lineCap: "round",
+      });
+}
+rateAlert()
 
 async function readSpreadValues() {
     try {

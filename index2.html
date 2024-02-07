@@ -44,6 +44,9 @@
 
   <style>
     @media only screen and (max-width: 600px) {
+      body{
+        padding: 0;
+      }
 
       .rs-control .rs-range-color {
         background-color: #005043;
@@ -64,6 +67,24 @@
       .rs-control .rs-border.rs-outer,
       .rs-control .rs-border.rs-inner {
         border: none;
+      }
+
+      .gold-price{
+        text-align: center;
+        margin: 20px 0px;
+        color: #fff;
+      }
+
+      .alert-slider{
+        display: flex;
+        flex-direction: row;
+      }
+
+      .alert-slider p{
+        color: #fff;
+        margin-top: 38%; 
+        margin-right: 10px;
+        margin-left: 10px;
       }
     }
 
@@ -190,11 +211,11 @@
 
 <body class="d-flex justify-content-center align-items-center">
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-    <div class="col-lg-4 d-flex justify-content-center">
+    <!-- <div class="col-lg-4 d-flex justify-content-center">
       <img class="logo" src="./Logo Misna gold.png" alt="" style="width: 120px; margin-top:5px;">
-    </div>
+    </div> -->
     <!-- Navbar -->
-    <nav class="d-flex justify-content-center">
+    <!-- <nav class="d-flex justify-content-center">
       <div id="navbar">
         <ul class="navbar-nav  ">
           <li class="nav-item d-flex align-items-center">
@@ -203,9 +224,14 @@
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> -->
     <!-- End Navbar -->
-    <div id="slider"></div>
+    <h4 id="goldRate" class="gold-price"></h4>
+    <div class="alert-slider">
+      <p>-50</p>
+      <div id="slider"></div>
+      <p>+50</p>
+    </div>
   </main>
 
 
@@ -451,14 +477,7 @@
 
 
   <script>
-    $("#slider").roundSlider({
-      radius: 120,
-      circleShape: "half-top",
-      sliderType: "min-range",
-      showTooltip: false,
-      value: 100,
-      lineCap: "round",
-    });
+  
   </script>
 
 
