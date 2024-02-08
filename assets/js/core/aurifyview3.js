@@ -74,7 +74,7 @@ function rateAlert() {
         var currentValue = $("#slider").roundSlider("option", "value");
 
         if (currentValue <= 50) {
-            document.getElementById('value').innerHTML = goldValue - 50 + currentValue;
+            document.getElementById('value').innerHTML = (goldValue - 50 + currentValue).toFixed(2);
         } else {
             document.getElementById('value').innerHTML = (goldValue + currentValue - 50).toFixed(2);
         }
