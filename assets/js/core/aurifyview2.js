@@ -49,7 +49,7 @@ async function fetchData() {
         document.getElementById('goldRate').textContent = '$' + goldValueUSD.toFixed(2);
         document.getElementById('silverRate').textContent = '$' + silverValueUSD.toFixed(3);
 
-        document.getElementById('goldRateValue').textContent = '$' + goldValueUSD.toFixed(2);
+        // document.getElementById('goldRateValue').textContent = '$' + goldValueUSD.toFixed(2);
 
         var GoldUSDResult = (goldValueUSD / 31.1035).toFixed(4);
         goldValue = (GoldUSDResult * 3.67).toFixed(4);
