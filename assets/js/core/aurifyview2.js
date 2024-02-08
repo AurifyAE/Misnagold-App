@@ -233,9 +233,18 @@ function rateAlert() {
         circleShape: "half-top",
         sliderType: "min-range",
         showTooltip: false,
-        value: 100,
+        value: "100,200",
         lineCap: "round",
-      });
+    });
+
+
+    // Set up a callback function for the value change event
+    $("#slider").on("drag", function (event) {
+        // Get the current value
+        var currentValue = $("#slider").roundSlider("option", "value");
+        console.log("Current Value:", currentValue);
+        document.getElementById('value').innerHTML = currentValue;
+    });
 }
 rateAlert()
 
