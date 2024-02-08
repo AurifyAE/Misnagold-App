@@ -7,7 +7,7 @@
 setInterval(fetchData, 500);
 
 
-let goldValue, silverValue;
+let goldValue, silverValue, alertValue;
 
 // Gold API KEY
 const API_KEY = 'goldapi-fbqpmirloto20zi-io'
@@ -74,11 +74,11 @@ function rateAlert() {
         var currentValue = $("#slider").roundSlider("option", "value");
 
         if (currentValue <= 50) {
-            const alertValue = (goldValue - 50 + currentValue).toFixed(2);
+            alertValue = (goldValue - 50 + currentValue).toFixed(0);
             document.getElementById('value').innerHTML = alertValue;
 
         } else {
-            const alertValue = (goldValue + currentValue - 50).toFixed(2);
+            alertValue = (goldValue + currentValue - 50).toFixed(0);
             document.getElementById('value').innerHTML = alertValue;
         }
         console.log("Current Value:", currentValue);
@@ -88,4 +88,24 @@ function rateAlert() {
 
 rateAlert()
 
+// function setAlertBtn(){
 
+// }
+
+
+document.getElementById('alertBtn').addEventListener('click', () => {
+    let value = parseFloat(alertValue);
+    let value2 = parseFloat(goldValue);
+
+
+    const value3 = value.toFixed(0);
+    const value4 = value2.toFixed(0);
+
+    console.log(value2);
+
+    if (value3 === value4) {
+        document.getElementById('xyz').play();
+        // alert("Thank you!");
+    }
+
+});
