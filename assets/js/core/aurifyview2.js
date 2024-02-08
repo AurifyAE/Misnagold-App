@@ -238,7 +238,7 @@ function rateAlert() {
     $("#slider").roundSlider({
         radius: 120,
         circleShape: "half-top",
-        sliderType: "mid-range",
+        sliderType: "min-range",
         showTooltip: false,
         value: value,
         lineCap: "round",
