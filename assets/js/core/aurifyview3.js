@@ -51,19 +51,19 @@ async function fetchData() {
 ////////////////////////////////////////////
 ///// Function to show Alert  //////////////
 function rateAlert() {
-    const value = parseFloat(goldValue);
-    const valueMin = parseFloat(goldValue - 50);
-    const valueMax = parseFloat(goldValue + 50);
+    // const value = parseFloat(goldValue);
+    // const valueMin = parseFloat(goldValue - 50);
+    // const valueMax = parseFloat(goldValue + 50);
 
     // Initialize the round slider on the element
     $("#slider").roundSlider({
         radius: 120,
         circleShape: "half-top",
-        sliderType: "min-range",
+        sliderType: "mid-range",
         showTooltip: false,
-        value: value,
-        min: valueMin,
-        max: valueMax,
+        value: 50,
+        min: 0,
+        max: 100,
         lineCap: "round",
     });
 
@@ -72,8 +72,14 @@ function rateAlert() {
     $("#slider").on("drag", function (event) {
         // Get the current value
         var currentValue = $("#slider").roundSlider("option", "value");
+
+        if (currentValue <= 50) {
+            document.getElementById('value').innerHTML = goldValue - 50 + currentValue;
+        } else {
+            document.getElementById('value').innerHTML = (goldValue + currentValue - 50).toFixed(2);
+        }
         console.log("Current Value:", currentValue);
-        document.getElementById('value').innerHTML = currentValue;
+        //document.getElementById('value').innerHTML = currentValue;
     });
 }
 
