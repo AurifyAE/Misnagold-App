@@ -49,6 +49,8 @@ async function fetchData() {
         document.getElementById('goldRate').textContent = '$' + goldValueUSD.toFixed(2);
         document.getElementById('silverRate').textContent = '$' + silverValueUSD.toFixed(3);
 
+        document.getElementById('goldRateValue').textContent = '$' + goldValueUSD.toFixed(2);
+
         var GoldUSDResult = (goldValueUSD / 31.1035).toFixed(4);
         goldValue = (GoldUSDResult * 3.67).toFixed(4);
 
@@ -228,15 +230,22 @@ async function fetchData() {
 ///// Function to show Alert  //////////////
 
 function rateAlert() {
+    const value = parseFloat(document.getElementById('goldRateValue').value);
+    const valueMin = parseFloat(document.getElementById('goldRateValue').value) - 50;
+    const valueMax = parseFloat(document.getElementById('goldRateValue').value) + 50;
+
+    // Initialize the round slider on the element
     $("#slider").roundSlider({
         radius: 120,
         circleShape: "half-top",
-        sliderType: "min-range",
+        sliderType: "mid-range",
         showTooltip: false,
-        value: "100,200",
+        value: value,
         lineCap: "round",
     });
 
+    var obj1 = $("#slider").data("roundSlider");
+    obj1.setValue(valueMin);  
 
     // Set up a callback function for the value change event
     $("#slider").on("drag", function (event) {
@@ -246,6 +255,7 @@ function rateAlert() {
         document.getElementById('value').innerHTML = currentValue;
     });
 }
+
 rateAlert()
 
 async function readSpreadValues() {
