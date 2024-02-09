@@ -1,13 +1,25 @@
-// // import { readSpreadValues } from '../core/spotrateDB.js';
-// import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
-// import { app } from '../../../config/db.js';
+import { getFirestore, collection, getDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
+import { app } from '../../../config/db.js';
 
-// const firestore = getFirestore(app)
+const firestore = getFirestore(app)
 
 setInterval(fetchData, 500);
 
 
-let goldValue, silverValue, alertValue;
+var goldValue, silverValue, alertValue, currentGoldValue, alert;
+
+function playAlert(value) {
+    let value2 = parseFloat(goldValue);
+    console.log(alert);
+
+    const value4 = value2.toFixed(0);
+
+    if (alert === value4) {
+        document.getElementById('xyz').play();
+        // alert("Thank you!");
+    }
+}
+playAlert()
 
 // Gold API KEY
 const API_KEY = 'goldapi-fbqpmirloto20zi-io'
@@ -39,7 +51,9 @@ async function fetchData() {
         var goldValueUSD = parseFloat(resultGold.price);
         var silverValueUSD = parseFloat(resultSilver.price)
 
-        goldValue = goldValueUSD
+        goldValue = goldValueUSD;
+        currentGoldValue = goldValueUSD;
+        playAlert(goldValueUSD)
 
         document.getElementById('goldRateValue').textContent = '$' + goldValueUSD.toFixed(2);
 
@@ -48,10 +62,18 @@ async function fetchData() {
     }
 }
 
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     var currentValue = $("#slider").roundSlider("option", "value");
+//     if (currentValue === 50) {
+//         console.log(currentValue);
+//         document.getElementById('value').innerHTML = goldValue;
+//     }
+// })
+
 ////////////////////////////////////////////
 ///// Function to show Alert  //////////////
 function rateAlert() {
-
     // Initialize the round slider on the element
     $("#slider").roundSlider({
         radius: 120,
@@ -72,21 +94,68 @@ function rateAlert() {
         var currentValue = $("#slider").roundSlider("option", "value");
 
         if (currentValue <= 50) {
-            alertValue = (goldValue - 50 + currentValue).toFixed(0);
+            alertValue = Math.round(goldValue - 50 + currentValue);
             document.getElementById('value').innerHTML = alertValue;
-
         } else {
-            alertValue = (goldValue + currentValue - 50).toFixed(0);
+            alertValue = Math.round(goldValue + currentValue - 50);
             document.getElementById('value').innerHTML = alertValue;
         }
         console.log("Current Value:", currentValue);
-        //document.getElementById('value').innerHTML = currentValue;
     });
 }
 
 rateAlert()
 
+// Function to read data from the Firestore collection
+async function readData() {
+    // Get the UID of the authenticated user
+    const uid = 'LnpQA4ZFsEPRbLul1zDTFj5tWvn1';
 
+    if (!uid) {
+        console.error('User not authenticated');
+        return Promise.reject('User not authenticated');
+    }
+
+    const docRef = doc(firestore, `users/${uid}/alert/alertValue`);
+
+    try {
+        const docSnapshot = await getDoc(docRef);
+
+        if (docSnapshot.exists()) {
+            // Document exists, retrieve its data
+            const result = {
+                id: docSnapshot.id,
+                data: docSnapshot.data()
+            };
+            return result;
+        } else {
+            console.error('Document does not exist');
+            return Promise.reject('Document does not exist');
+        }
+    } catch (error) {
+        console.error('Error getting document:', error);
+        return Promise.reject('Error getting document');
+    }
+}
+
+// Function to save data to the Firestore collection
+async function saveData(data) {
+    // Get the UID of the authenticated user
+    const uid = 'LnpQA4ZFsEPRbLul1zDTFj5tWvn1';
+
+    if (!uid) {
+        console.error('User not authenticated');
+        return Promise.reject('User not authenticated');
+    }
+
+    const docRef = doc(firestore, `users/${uid}/alert/alertValue`); // Assuming commodityData has an 'id' property
+
+    await setDoc(docRef, data);
+
+    console.log('Document written');
+}
+
+////////////////////
 document.getElementById('value').addEventListener('input', () => {
     // Update alertValue with the edited content
     alertValue = document.getElementById('value').textContent;
@@ -99,7 +168,7 @@ document.getElementById('value').addEventListener('click', () => {
     document.getElementById('value').contentEditable = true;
 });
 
-
+////////////////////
 document.getElementById('alertBtn').addEventListener('click', () => {
     let value = parseFloat(alertValue);
     let value2 = parseFloat(goldValue);
@@ -109,10 +178,37 @@ document.getElementById('alertBtn').addEventListener('click', () => {
     const value4 = value2.toFixed(0);
 
     console.log(alertValue);
+    saveData({
+        alertValue: alertValue
+    })
 
-    if (value3 === value4) {
+    let alert;
+    readData()
+        .then((result) => {
+            // console.log('Document data:', result);
+            document.getElementById('displayValue').innerHTML = result.data.alertValue;
+            alert = result.data.alertValue;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+    if (alert === value4) {
         document.getElementById('xyz').play();
         // alert("Thank you!");
     }
 
 });
+
+readData()
+    .then((result) => {
+        // console.log('Document data:', result.data.alertValue);
+        document.getElementById('displayValue').innerHTML = result.data.alertValue;
+        alert = result.data.alertValue;
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+
+

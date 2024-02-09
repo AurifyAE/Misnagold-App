@@ -229,34 +229,34 @@ async function fetchData() {
 ////////////////////////////////////////////
 ///// Function to show Alert  //////////////
 
-function rateAlert() {
-    const value = parseFloat(document.getElementById('goldRateValue').value);
-    const valueMin = parseFloat(document.getElementById('goldRateValue').value) - 50;
-    const valueMax = parseFloat(document.getElementById('goldRateValue').value) + 50;
+// function rateAlert() {
+//     const value = parseFloat(document.getElementById('goldRateValue').value);
+//     const valueMin = parseFloat(document.getElementById('goldRateValue').value) - 50;
+//     const valueMax = parseFloat(document.getElementById('goldRateValue').value) + 50;
 
-    // Initialize the round slider on the element
-    $("#slider").roundSlider({
-        radius: 120,
-        circleShape: "half-top",
-        sliderType: "min-range",
-        showTooltip: false,
-        value: value,
-        lineCap: "round",
-    });
+//     // Initialize the round slider on the element
+//     $("#slider").roundSlider({
+//         radius: 120,
+//         circleShape: "half-top",
+//         sliderType: "min-range",
+//         showTooltip: false,
+//         value: value,
+//         lineCap: "round",
+//     });
 
-    var obj1 = $("#slider").data("roundSlider");
-    obj1.setValue(valueMin);  
+//     var obj1 = $("#slider").data("roundSlider");
+//     obj1.setValue(valueMin);  
 
-    // Set up a callback function for the value change event
-    $("#slider").on("drag", function (event) {
-        // Get the current value
-        var currentValue = $("#slider").roundSlider("option", "value");
-        console.log("Current Value:", currentValue);
-        document.getElementById('value').innerHTML = currentValue;
-    });
-}
+//     // Set up a callback function for the value change event
+//     $("#slider").on("drag", function (event) {
+//         // Get the current value
+//         var currentValue = $("#slider").roundSlider("option", "value");
+//         console.log("Current Value:", currentValue);
+//         document.getElementById('value').innerHTML = currentValue;
+//     });
+// }
 
-rateAlert()
+// rateAlert()
 
 async function readSpreadValues() {
     try {
