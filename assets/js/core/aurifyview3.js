@@ -51,9 +51,6 @@ async function fetchData() {
 ////////////////////////////////////////////
 ///// Function to show Alert  //////////////
 function rateAlert() {
-    // const value = parseFloat(goldValue);
-    // const valueMin = parseFloat(goldValue - 50);
-    // const valueMax = parseFloat(goldValue + 50);
 
     // Initialize the round slider on the element
     $("#slider").roundSlider({
@@ -88,9 +85,18 @@ function rateAlert() {
 
 rateAlert()
 
-// function setAlertBtn(){
 
-// }
+document.getElementById('value').addEventListener('input', () => {
+    // Update alertValue with the edited content
+    alertValue = document.getElementById('value').textContent;
+    console.log(alertValue);
+});
+
+// Optionally, you can add a click event to enable content editing on click
+document.getElementById('value').addEventListener('click', () => {
+    // Set contentEditable to true when the element is clicked
+    document.getElementById('value').contentEditable = true;
+});
 
 
 document.getElementById('alertBtn').addEventListener('click', () => {
@@ -101,7 +107,7 @@ document.getElementById('alertBtn').addEventListener('click', () => {
     const value3 = value.toFixed(0);
     const value4 = value2.toFixed(0);
 
-    console.log(value2);
+    console.log(alertValue);
 
     if (value3 === value4) {
         document.getElementById('xyz').play();

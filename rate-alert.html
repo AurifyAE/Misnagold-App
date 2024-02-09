@@ -57,7 +57,7 @@
       }
 
       .rs-control .rs-handle {
-        background-color: #838383;
+        background-color: #fff;
       }
 
       .rs-control .rs-bg-color {
@@ -87,10 +87,19 @@
         margin-left: 10px;
       }
 
+      .value-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
       .slider-value {
         text-align: center;
         color: #fff;
         margin-bottom: 50px;
+        padding: 0px 20px;
+        width: max-content;
       }
 
       .alert {
@@ -107,7 +116,7 @@
         font-size: 18px;
       }
 
-      .alert button{
+      .alert button {
         background-color: #005043;
         border: none;
         border-radius: 15px;
@@ -116,8 +125,8 @@
         font-size: 18px;
         margin-top: 25px;
       }
-      
-      .alert button:hover{
+
+      .alert button:hover {
         background-color: transparent;
         color: #fff;
         border: 1px solid #fff;
@@ -269,7 +278,9 @@
       <div id="slider"></div>
       <p>+50</p>
     </div>
-    <h2 id="value" class="slider-value">0</h2>
+    <div class="value-container">
+      <h2 id="value" class="slider-value" contenteditable="false">0</h2>
+    </div>
 
     <div class="alert">
       <label class="alert-label">You can now set alerts</label>
