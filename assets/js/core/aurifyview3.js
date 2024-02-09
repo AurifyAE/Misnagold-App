@@ -62,6 +62,7 @@ function rateAlert() {
         min: 0,
         max: 100,
         lineCap: "round",
+        handleSize: 25
     });
 
 
