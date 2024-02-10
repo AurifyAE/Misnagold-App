@@ -45,6 +45,43 @@
         justify-content: center;
         align-items: center;
       }
+
+      .main-content {
+        margin-top: 20%;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        /* background-color: #053e32; */
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .bank-details {
+        display: flex;
+        flex-direction: row;
+        flex-basis: 70%;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+
+      .bank-details p {
+        margin-bottom: 5px;
+        margin-right: 20px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
     }
 
     body {
@@ -247,74 +284,39 @@
 
 
 
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            
-            <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    background-color: #f4f4f4;
-                    margin: 0;
-                    padding: 0;
-                }
-                .container {
-                    max-width: 600px;
-                    margin: 50px auto;
-                    padding: 20px;
-                    /* background-color: #053e32; */
-                    border-radius: 5px;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                }
-                h2 {
-                    text-align: center;
-                    margin-bottom: 20px;
-                }
-                .bank-details {
-                    margin-bottom: 20px;
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    background-color: #f9f9f9;
-                }
-                .bank-details h3 {
-                    margin-top: 0;
-                }
-                .bank-details p {
-                    margin-bottom: 5px;
-                }
-            </style>
-            </head>
-            <body>
-            <div class="container">
-                
-                <div class="bank-details">
-                    <!-- <h3>Bank Information</h3> -->
-                    <p><strong>Holder Name:</strong> John Doe</p>
-                    <p><strong>Bank Name:</strong> Example Bank</p>
-                    <p><strong>City:</strong> City</p>
-                    <p><strong>Account Number:</strong> 1234567890</p>
-                    <p><strong>IBAN:</strong> IBAN1234567890</p>
-                    <p><strong>IFSC:</strong> IFSC123456</p>
-                    <p><strong>SWIFT:</strong> 2222222</p>
-                    <p><strong>Branch:</strong> MPM</p>
-                    <p><strong>Country:</strong> Dufai</p>
-                    <p><strong>Logo:</strong> <img src="logo.png" alt="Bank Logo"></p>
-                </div>
+
+        <div class="container">
+
+          <div class="bank-details">
+            <!-- <h3>Bank Information</h3> -->
+            <div class="column">
+              <p>Holder Name</p>
+              <p>Bank Name</p>
+              <p>City</p>
+              <p>Account Number</p>
+              <p>IBAN</p>
+              <p>IFSC</p>
+              <p>SWIFT</p>
+              <p>Branch</p>
+              <p>Country</p>
+              <p>Country</p>
             </div>
-            </body>
-            </html>
-            
-
-            
-
-
-
-          
+            <div class="column">
+              <p>John Doe</p>
+              <p>Example Bank</p>
+              <p>Dubai</p>
+              <p>1234567890</p>
+              <p>IBAN1234567890</p>
+              <p>IFSC123456</p>
+              <p>2222222</p>
+              <p>Dubai</p>
+              <p>Dubai</p>
+              <p><img src="logo.png" alt="Bank Logo"></p>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
     </div>
   </main>
 
