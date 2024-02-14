@@ -6,23 +6,11 @@ const firestore = getFirestore(app)
 setInterval(fetchData, 500);
 
 
-var goldValue, silverValue, alertValue, currentGoldValue, alert;
-
-function playAlert(value) {
-    let value2 = parseFloat(goldValue);
-    console.log(alert);
-
-    const value4 = value2.toFixed(0);
-
-    if (alert === value4) {
-        document.getElementById('xyz').play();
-        // alert("Thank you!");
-    }
-}
-playAlert()
-
 // Gold API KEY
 const API_KEY = 'goldapi-fbqpmirloto20zi-io'
+
+let goldValue, silverValue, alertValue, currentGoldValue, alert;
+
 
 // Function to Fetch Gold API Data
 async function fetchData() {
@@ -60,19 +48,32 @@ async function fetchData() {
     } catch (error) {
         console.error('Error fetching gold and silver values:', error);
     }
+    alertInitialValue()
+}
+
+// Show Alert values from Firebase
+readData()
+    .then((result) => {
+        // console.log('Document data:', result.data.alertValue);
+        document.getElementById('displayValue').innerHTML = result.data.alertValue;
+        setAlertValue(result.data.alertValue);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+
+// Function to set Alert initial Value
+function alertInitialValue() {
+    var currentValue = $("#slider").roundSlider("option", "value");
+    if (currentValue === 50) {
+        // console.log(currentValue);
+        document.getElementById('value').innerHTML = goldValue.toFixed(0);
+    }
 }
 
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     var currentValue = $("#slider").roundSlider("option", "value");
-//     if (currentValue === 50) {
-//         console.log(currentValue);
-//         document.getElementById('value').innerHTML = goldValue;
-//     }
-// })
-
-////////////////////////////////////////////
-///// Function to show Alert  //////////////
+// Function to show Alert
 function rateAlert() {
     // Initialize the round slider on the element
     $("#slider").roundSlider({
@@ -155,7 +156,8 @@ async function saveData(data) {
     console.log('Document written');
 }
 
-////////////////////
+//////////////////
+// Event Listener to Edit Alert Value
 document.getElementById('value').addEventListener('input', () => {
     // Update alertValue with the edited content
     alertValue = document.getElementById('value').textContent;
@@ -167,8 +169,10 @@ document.getElementById('value').addEventListener('click', () => {
     // Set contentEditable to true when the element is clicked
     document.getElementById('value').contentEditable = true;
 });
+//////////////////
 
 ////////////////////
+// Event Listener for Set Alert Button Click
 document.getElementById('alertBtn').addEventListener('click', () => {
     let value = parseFloat(alertValue);
     let value2 = parseFloat(goldValue);
@@ -187,7 +191,7 @@ document.getElementById('alertBtn').addEventListener('click', () => {
         .then((result) => {
             // console.log('Document data:', result);
             document.getElementById('displayValue').innerHTML = result.data.alertValue;
-            alert = result.data.alertValue;
+            setAlertValue(result.data.alertValue);
         })
         .catch((error) => {
             console.error(error);
@@ -197,18 +201,25 @@ document.getElementById('alertBtn').addEventListener('click', () => {
         document.getElementById('xyz').play();
         // alert("Thank you!");
     }
-
 });
 
-readData()
-    .then((result) => {
-        // console.log('Document data:', result.data.alertValue);
-        document.getElementById('displayValue').innerHTML = result.data.alertValue;
-        alert = result.data.alertValue;
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+// Function to Set Alert Value Globaly
+function setAlertValue(value) {
+    alert = value;
+}
 
+// Function to Play Alert
+function playAlert() {
+    let value = parseFloat(goldValue);
 
+    const value2 = value.toFixed(0);
+    const value3 = alert.toFixed(0);
+    console.log(value2, value3);
 
+    if (value3 === value2) {
+        // alert("Thank you!");
+        document.getElementById('xyz').play();
+    }
+}
+
+playAlert()
