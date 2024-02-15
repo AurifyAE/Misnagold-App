@@ -116,7 +116,7 @@
 
       .alert-label {
         text-align: center;
-        color: #fff;
+        color: #fff;            
         font-size: 18px;
       }
 
@@ -128,6 +128,10 @@
         color: #fff;
         font-size: 18px;
         margin-top: 20px;
+      }
+
+      .display{
+        display: flex;
       }
 
       .display-value {
@@ -149,7 +153,6 @@
         font-weight: 600;
       }
     }
-
 
     body {
       margin: 0;
@@ -300,7 +303,6 @@
 
     <div class="alert">
       <label class="alert-label">You can now set alerts</label>
-      <!-- Rounded switch -->
       <div>
         <button id="alertBtn">Set Alert</button>
         <button id="alertDeleteBtn">Delete Alert</button>
@@ -309,7 +311,7 @@
     <audio id="xyz" src="./assets/alert.mp3" preload="auto" style="display: none;"></audio>
 
     <div class="display-value">
-      <p id="display">Value set at <span id="displayValue"></span></p>
+      <p id="display" class="display">Value set at : <span id="displayValue"></span></p>
     </div>
   </main>
 

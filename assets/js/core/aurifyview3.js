@@ -3,11 +3,10 @@ import { app } from '../../../config/db.js';
 
 const firestore = getFirestore(app)
 
-document.addEventListener('DOMContentLoaded', () => {
+setInterval(() => {
+    fetchData();
     document.getElementById('goldRateValue').textContent = '$' + goldValue.toFixed(2);
-})
-
-setInterval(fetchData, 500);
+}, 500);
 
 // Gold API KEY
 const API_KEY = 'goldapi-fbqpmirloto20zi-io'
@@ -46,7 +45,6 @@ async function fetchData() {
         currentGoldValue = goldValueUSD;
         playAlert(goldValueUSD)
 
-        document.getElementById('goldRateValue').textContent = '$' + goldValueUSD.toFixed(2);
 
     } catch (error) {
         console.error('Error fetching gold and silver values:', error);
@@ -222,9 +220,9 @@ document.getElementById('alertBtn').addEventListener('click', () => {
             // console.log('Document data:', result);
             document.getElementById('displayValue').innerHTML = result.data.alertValue;
             setAlertValue(result.data.alertValue);
-            document.getElementById('displayValue').style.display = 'block';
-            document.getElementById('alertDeleteBtn').style.display = 'block';
-            document.getElementById('display').style.display = 'block';
+            document.getElementById('displayValue').style.display = 'inline-block';
+            document.getElementById('alertDeleteBtn').style.display = 'inline-block';
+            document.getElementById('display').style.display = 'inline-block';
         })
         .catch((error) => {
             console.error(error);
