@@ -1,10 +1,13 @@
-import { getFirestore, collection, getDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
+import { getFirestore, deleteDoc, getDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
 import { app } from '../../../config/db.js';
 
 const firestore = getFirestore(app)
 
-setInterval(fetchData, 500);
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('goldRateValue').textContent = '$' + goldValue.toFixed(2);
+})
 
+setInterval(fetchData, 500);
 
 // Gold API KEY
 const API_KEY = 'goldapi-fbqpmirloto20zi-io'
@@ -26,18 +29,18 @@ async function fetchData() {
 
     try {
         const responseGold = await fetch("https://www.goldapi.io/api/XAU/USD", requestOptions);
-        const responseSilver = await fetch("https://www.goldapi.io/api/XAG/USD", requestOptions);
+        // const responseSilver = await fetch("https://www.goldapi.io/api/XAG/USD", requestOptions);
 
         if (!responseGold.ok && !responseSilver.ok) {
             throw new Error('One or more network responses were not OK');
         }
 
         const resultGold = await responseGold.json();
-        const resultSilver = await responseSilver.json();
+        // const resultSilver = await responseSilver.json();
 
         // Adjust based on the actual API response structure
         var goldValueUSD = parseFloat(resultGold.price);
-        var silverValueUSD = parseFloat(resultSilver.price)
+        // var silverValueUSD = parseFloat(resultSilver.price)
 
         goldValue = goldValueUSD;
         currentGoldValue = goldValueUSD;
@@ -60,7 +63,35 @@ readData()
     })
     .catch((error) => {
         console.error(error);
+        document.getElementById('displayValue').style.display = 'none';
+        document.getElementById('alertDeleteBtn').style.display = 'none';
+        document.getElementById('display').style.display = 'none';
     });
+
+
+
+// Event Listener for Delete Alert Btn
+document.getElementById('alertDeleteBtn').addEventListener('click', async () => {
+    console.log('delete btn');
+    try {
+        const uid = 'LnpQA4ZFsEPRbLul1zDTFj5tWvn1';
+
+        if (!uid) {
+            console.error('User not authenticated');
+            throw new Error('User not authenticated');
+        }
+
+        await deleteDoc(doc(firestore, `users/${uid}/alert/alertValue`));
+        document.getElementById('displayValue').style.display = 'none';
+        document.getElementById('alertDeleteBtn').style.display = 'none';
+        document.getElementById('display').style.display = 'none';
+
+        console.log('Document deleted successfully');
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+});
+
 
 
 // Function to set Alert initial Value
@@ -71,7 +102,6 @@ function alertInitialValue() {
         document.getElementById('value').innerHTML = goldValue.toFixed(0);
     }
 }
-
 
 // Function to show Alert
 function rateAlert() {
@@ -149,7 +179,7 @@ async function saveData(data) {
         return Promise.reject('User not authenticated');
     }
 
-    const docRef = doc(firestore, `users/${uid}/alert/alertValue`); // Assuming commodityData has an 'id' property
+    const docRef = doc(firestore, `users/${uid}/alert/alertValue`);
 
     await setDoc(docRef, data);
 
@@ -192,6 +222,9 @@ document.getElementById('alertBtn').addEventListener('click', () => {
             // console.log('Document data:', result);
             document.getElementById('displayValue').innerHTML = result.data.alertValue;
             setAlertValue(result.data.alertValue);
+            document.getElementById('displayValue').style.display = 'block';
+            document.getElementById('alertDeleteBtn').style.display = 'block';
+            document.getElementById('display').style.display = 'block';
         })
         .catch((error) => {
             console.error(error);
@@ -223,3 +256,4 @@ function playAlert() {
 }
 
 playAlert()
+
