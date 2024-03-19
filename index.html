@@ -278,21 +278,22 @@
 
     }
 
-    body {
+   body {
       margin: 0;
       padding: 0px;
-      font-family: "arial", heletica, sans-serif;
+      font-family: "arial", Helvetica, sans-serif;
       font-size: 24px;
       background-image: url('./assets/img/SL_121219_26010_26.jpg');
       background-repeat: no-repeat;
       background-size: cover;
+      background-attachment: fixed; /* Prevent background from scrolling */
       -webkit-animation: 20s linear 0s normal none infinite animate;
       -moz-animation: 20s linear 0s normal none infinite animate;
       -ms-animation: 20s linear 0s normal none infinite animate;
       -o-animation: 20s linear 0s normal none infinite animate;
       animation: 20s linear 0s normal none infinite animate;
       color: #005043;
-      height: 100vh;
+      height: 100vh; /* Adjusted to 100vh for full viewport height */
       width: 100%;
     }
 
