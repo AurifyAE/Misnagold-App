@@ -48,7 +48,7 @@ async function fetchData() {
         if (data && data.symbol) {
             if (data.symbol === "Gold") {
                 goldData = data;
-                // updateGoldUI();
+                // updateGoldUI(); 
             } else if (data.symbol === "Silver") {
                 silverData = data;
             }
